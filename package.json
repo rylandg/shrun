@@ -1,0 +1,30 @@
+{
+  "name": "shrun",
+  "version": "0.0.1",
+  "description": "Run CLI tests in isolated containers",
+  "devDependencies": {
+    "@types/node": "^13.9.1",
+    "@types/node-fetch": "^2.5.5",
+    "@types/url-join": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "~2.19.2",
+    "@typescript-eslint/parser": "~2.19.2",
+    "eslint": "~6.8.0",
+    "eslint-config-prettier": "~6.10.0",
+    "prettier": "~1.19.1",
+    "rimraf": "~3.0.2",
+    "tsutils": "~3.17.0",
+    "typescript": "~3.8.2"
+  },
+  "scripts": {
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "author": "Ryland Goldstein && Jeanie Holtz",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "~1.10.0",
+    "url-join": "^4.0.1"
+  }
+}
