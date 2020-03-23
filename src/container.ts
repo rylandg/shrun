@@ -1,5 +1,5 @@
 import Docker from 'dockerode';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import { PassThrough as PassThroughStream } from 'stream';
 import { msleep } from './msleep';
 
@@ -11,7 +11,7 @@ const msCmdPollInterval = 50;
 const startCommand = 'bash';
 
 export class Container {
-  private started: boolean = false;
+  public started: boolean = false;
   private outDialog: string[] = [];
   private errDialog: string[] = [];
   private outStream: PassThroughStream = new PassThroughStream();
