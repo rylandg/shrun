@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "lib": ["es2017"],
+    "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "allowJs": false,
-    "importHelpers": true,
     "jsx": "react",
     "alwaysStrict": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
     "esModuleInterop": true
   },
-  "include": [ "src/**/*" ]
+  "include": [
+    "src/**/*",
+    "jest/**/*"
+  ]
 }
