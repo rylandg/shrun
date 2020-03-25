@@ -1,7 +1,11 @@
 {
   "name": "shrun",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "Run CLI tests in isolated containers",
+  "main": "build/src/main.js",
+  "bin": {
+    "shrun": "./build/src/main.js"
+  },
   "devDependencies": {
     "@types/node": "^13.9.1",
     "@types/node-fetch": "^2.5.5",
@@ -25,10 +29,26 @@
   "license": "MIT",
   "dependencies": {
     "@types/dockerode": "^2.5.24",
+    "@types/escape-string-regexp": "^2.0.1",
+    "@types/glob": "^7.1.1",
+    "@types/jest": "^25.1.4",
+    "@types/js-yaml": "^3.12.2",
+    "@types/mz": "^2.7.0",
+    "@types/strip-color": "^0.1.0",
+    "@types/tmp": "^0.1.0",
     "@types/uuid": "^7.0.2",
     "dockerode": "^3.1.0",
+    "escape-string-regexp": "^2.0.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "glob": "^7.1.6",
+    "jest": "^25.1.0",
+    "jest-cli": "^25.1.0",
+    "jest-diff": "^25.1.0",
+    "js-yaml": "^3.13.1",
+    "mz": "^2.7.0",
     "stream": "0.0.2",
-    "tslib": "^1.10.0",
+    "strip-color": "^0.1.0",
+    "tmp-promise": "^2.0.2",
     "url-join": "^4.0.1",
     "uuid": "^7.0.2"
   }
