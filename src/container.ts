@@ -11,7 +11,7 @@ const msCmdPollInterval = 50;
 const startCommand = 'bash';
 
 export class Container {
-  public started: boolean = false;
+  public started = false;
   private outDialog: string[] = [];
   private errDialog: string[] = [];
   private outStream: PassThroughStream = new PassThroughStream();
