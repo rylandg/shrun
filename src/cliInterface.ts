@@ -40,14 +40,21 @@ export const getCLIOptions = () => {
   // TODO (Ryland): support onlyFailures (will need to implement ourselves)
   // TODO (Ryland): add support for testRegex in addition to testMatch
   // TODO (Ryland): support config option for config path
+  // TODO (Ryland): support roots in addition to rootDir
   const dockerOption: Options = {
     description: 'Docker image to use when running Shrun tests',
     type: 'string',
   };
 
+  const envOptions: Options = {
+    description: 'Environment variables that should be passed into the Docker container',
+    type: 'array',
+  };
+
   const shrunOpts = {
     ...options,
     dockerImage: dockerOption,
+    dockerEnvVars: envOptions,
   };
 
   // delete shrunOpts.$0;
@@ -106,6 +113,7 @@ export const getCLIOptions = () => {
   delete shrunOpts.transformIgnorePatterns;
   delete shrunOpts.unmockedModulePathPatterns;
   delete shrunOpts.watch;
+  delete shrunOpts.roots;
   // delete shrunOpts.watchPathIgnorePaterns;
   return shrunOpts;
 };

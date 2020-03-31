@@ -73,6 +73,9 @@ runJestTest(testData);`;
     return writeFile(tmpFileName, fileSpec, 'utf8');
   }));
 
+  process.env.SHRUN_INTERNAL_SPECIFIER_ENV_VARS =
+    JSON.stringify(argv.dockerEnvVars || []);
+
   process.env.SHRUN_INTERNAL_SPECIFIER_IMAGE_NAME =
     argv.dockerImage || 'node:13';
   await runCLI(
