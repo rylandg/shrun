@@ -73,7 +73,7 @@ export const getCLIOptions = () => {
   delete shrunOpts.coverageDirectory;
   delete shrunOpts.coveragePathIgnorePatterns;
   delete shrunOpts.coverageProvider;
- delete shrunOpts.coverageReporters;
+  delete shrunOpts.coverageReporters;
   delete shrunOpts.coverageThreshold;
   // delete shrunOpts.dependencyExtractor;
   // delete shrunOpts.extraGlobals;
