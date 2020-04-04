@@ -84,15 +84,15 @@ sudo -E npx shrun --dockerImage '<your-cli-command>:latest'
 ```yml
 - test: Test init help output
   setup:
-		- "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -"
-		- "sudo apt install nodejs"
+    - "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -"
+    - "sudo apt install nodejs"
   steps:
     -   in: npm init --help
         out: |-
-					npm init [--force|-f|--yes|-y|--scope]
-					npm init <@scope> (same as `npx <@scope>/create`)
-					npm init [<@scope>/]<name> (same as `npx [<@scope>/]create-<name>`)
-					aliases: create, innit
+          npm init [--force|-f|--yes|-y|--scope]
+          npm init <@scope> (same as `npx <@scope>/create`)
+          npm init [<@scope>/]<name> (same as `npx [<@scope>/]create-<name>`)
+          aliases: create, innit
 ```
 
 
