@@ -1,6 +1,6 @@
 {
   "name": "shrun",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Run CLI tests in isolated containers",
   "main": "build/src/main.js",
   "bin": {
