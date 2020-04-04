@@ -16,6 +16,8 @@ import globCB from 'glob';
 import { dir, setGracefulCleanup, tmpName } from 'tmp-promise';
 
 import { logger } from './logger';
+import { msleep } from './msleep';
+import { buildImage } from './container';
 import { Spec, TestSpec } from './specInterface';
 import { getCLIOptions, ShrunArgv } from './cliInterface';
 
@@ -94,6 +96,44 @@ runJestTest(testData);`;
 
 const shrunOpts = getCLIOptions();
 
-const argv = yargs.usage(usage).options(shrunOpts).argv as ShrunArgv;
-validateCLIOptions(argv as Config.Argv, { ...(shrunOpts), deprecationEntries });
-runTests(argv);
+const main = async () => {
+  // unfortunately these are needed to provide
+  // the yargs behavior we want while taking
+  // advantage of the existing Jest CLI
+  let cmdFinished = false;
+  let blockNeeded = false;
+  const argv = yargs.usage(usage).options(shrunOpts).command(
+    'build <commandName>',
+    'Build the default shrun docker image',
+    (yargs0) => {
+      yargs0
+        .usage('Usage: $0 build <commandName>')
+        .positional('commandName', {
+          describe: 'Name of CLI command to bake into the docker image',
+          demandOption: true,
+          type: 'string',
+        })
+        .strict()
+    },
+    async (argv: { commandName: string }) => {
+      blockNeeded = true;
+      try {
+        await buildImage(argv.commandName);
+      } catch (err) {
+        process.exit(1);
+      }
+      process.exit(0);
+    },
+  ).onFinishCommand(async () => {
+    cmdFinished = true;
+  }).argv;
+
+  while (!cmdFinished && blockNeeded) {
+    await msleep(100);
+  }
+  validateCLIOptions(argv as Config.Argv,
+    { ...(shrunOpts), deprecationEntries });
+  runTests(argv);
+}
+
+main();

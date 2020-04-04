@@ -1,6 +1,9 @@
+import { join } from 'path';
+import { spawn } from 'child_process';
 import Docker from 'dockerode';
 import { v4 as uuidv4 } from 'uuid';
 import { PassThrough as PassThroughStream } from 'stream';
+
 import { msleep } from './msleep';
 
 const docker = new Docker();
@@ -9,6 +12,57 @@ const docker = new Docker();
 // has finished running
 const msCmdPollInterval = 50;
 const startCommand = 'bash';
+
+const runCmd = (cmd: string, args: string[]) => {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, args);
+    let wasErr = false;
+    let stderrEnd = false;
+    let stdoutEnd = false;
+    const shouldResolve = () => {
+      if (stdoutEnd && stderrEnd) {
+        wasErr ? reject() : resolve();
+      }
+    };
+    child.stdout.on('data', (buffer) => {
+      process.stdout.write(buffer.toString());
+    });
+    child.stdout.on('end', () => {
+      stdoutEnd = true;
+      shouldResolve();
+    });
+    child.stderr.on('data', (buffer) => {
+      process.stderr.write(buffer.toString());
+      wasErr = true;
+    });
+    child.stderr.on('end', () => {
+      stderrEnd = true;
+      shouldResolve();
+    });
+  })
+}
+
+export const buildImage = async (commandName: string) => {
+  const dockerFile = join(
+    process.cwd(),
+    'node_modules',
+    'shrun',
+    'docker_files',
+    'Dockerfile'
+  );
+  const cmd = 'docker';
+  const args = [
+    'build',
+    '.',
+    '-f',
+    dockerFile,
+    '--build-arg',
+    `CLICOMMAND_ARG=${commandName}`,
+    '--tag',
+    `${commandName}:latest`,
+  ];
+  await runCmd(cmd, args);
+};
 
 export class Container {
   public started = false;
