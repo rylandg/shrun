@@ -6,7 +6,7 @@
 
 # shrun (beta)
 
-Test CLI commands in isolated docker containers.
+Test NodeJS CLI commands in isolated docker containers.
 
 ![](./shrun.gif)
 
