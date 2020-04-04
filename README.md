@@ -1,8 +1,8 @@
-<img alt="npm" src="https://img.shields.io/npm/dw/shrun?style=for-the-badge">
-
-<img alt="GitHub" src="https://img.shields.io/github/license/rylandg/shrun?style=for-the-badge">
-
-<img alt="npm" src="https://img.shields.io/npm/v/shrun?style=for-the-badge">
+<p align="center">
+    <img alt="npm" src="https://img.shields.io/npm/dw/shrun?style=for-the-badge">
+    <img alt="GitHub" src="https://img.shields.io/github/license/rylandg/shrun?style=for-the-badge">
+    <img alt="npm" src="https://img.shields.io/npm/v/shrun?style=for-the-badge">
+</p>
 
 # shrun
 
@@ -69,3 +69,30 @@ npx shrun
 ```bash
 sudo -E npx shrun
 ```
+
+## Why shrun?
+
+`shrun` aims to bring consistency and convenience to the process of testing command line tools. Each individual spec is run in an isolated Docker container, leaving you free to break things without worrying about affecting other tests. The best part is that `shrun` is built on Jest, many of the standard Jest options work out of the box.
+
+### Benefits of shrun
+
+* Enables you to run thousands of parallel tests, each in their own isolated sandbox.
+* Makes it possible to test the end-to-end flow of your CLI, including installation and removal.
+* Built on top of Jest and accepts many of the Jest CLI options.
+* Simple declarative test-spec format makes it a joy to write tests. Tests can even be used to drive the CLI product development process. 
+
+
+### Examples and resources
+
+A standalone example repo has been created to showcase `shrun`. The repo contains a basic command line tool `testshrun` and a few example specs:
+
+https://github.com/rylandg/shrun-basic-demo
+
+
+### Known issues and unfinished work
+
+* `shrun` does not currently support a configuration file. This feature is planned and prioritized and the file will support many of the configuration options available to Jest.
+
+* some CLI outputs still refer to Jest instead of `shrun`
+
+* shrun does not support test coverage as this is quite difficult to support. I would love to support this but realistically it might not happen.
