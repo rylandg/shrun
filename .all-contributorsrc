@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "rylandg",
+      "name": "Ryland Goldstein",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/27736122?v=4",
+      "profile": "http://www.cdevn.com",
+      "contributions": [
+        "projectManagement",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "shrun",
+  "projectOwner": "rylandg",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
