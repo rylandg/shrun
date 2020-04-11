@@ -259,7 +259,7 @@ There are also two other stanzas not used in the above spec:
 * Enables you to run thousands of parallel tests, each in their own isolated sandbox.
 * Makes it possible to test the end-to-end flow of your CLI, including installation and removal.
 * Built on top of Jest and accepts many of the Jest CLI options.
-* Simple declarative test-spec format makes it a joy to write tests. Tests can even be used to drive the CLI product development process. 
+* Simple test-spec format makes it a joy to write tests. Tests can even be used to drive the CLI product development process. 
 
 
 ## Examples and resources
