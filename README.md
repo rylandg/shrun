@@ -39,16 +39,14 @@ yarn add --dev shrun
 **Build the default shrun image**
 
 ```bash
-npx shrun build <your-cli-command>
+npx shrun build
 ```
 
 *depending on how Docker is installed, `sudo` may be necessary*
 
 ```bash
-sudo -E npx shrun build <your-cli-command>
+sudo -E npx shrun build
 ```
-
-> Note: You will need to replace \<your-cli-command> with your own CLI command. The CLI command is the one registered to "bin" in your package.json
 
 **Create a simple spec**
 
@@ -66,18 +64,18 @@ By default, `shrun` looks for "specs" (CLI tests) in the `<project-root>/specs` 
 
 Replace or add to this spec to test your specific CLI command. As long as you built the default `shrun` image, it should work out of the box.
 
-For detailed information about writing `shrun` specs, read below `<REPLACE ME WITH LINK>`.
+For detailed information about writing `shrun` specs, [read below](#spec-format).
 
 **Run the demo.yml spec**
 
 ```bash
-npx shrun --dockerImage '<your-cli-command>:latest'
+npx shrun
 ```
 
 *sudo version*
 
 ```bash
-sudo -E npx shrun --dockerImage '<your-cli-command>:latest'
+sudo -E npx shrun
 ```
 
 ## Spec format
