@@ -4,9 +4,8 @@ RUN apt-get update && apt-get install -y curl git sudo
 RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
 
-ARG CLICOMMAND_ARG
-RUN test -n "$CLICOMMAND_ARG" || (echo "CLICOMMAND_ARG not set" && false)
-ENV CLICOMMAND $CLICOMMAND_ARG
+ARG CLICOMMAND_ARG='usercli'
+ENV CLICOMMAND=$CLICOMMAND_ARG
 ENV TINI_VERSION v0.18.0
 RUN curl -sL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini -o /tini
 RUN chmod +x /tini
@@ -34,8 +33,8 @@ ENV NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
 ENV MANPATH="$HOME/.node/share/man:$MANPATH"
 
 WORKDIR /home/dockeruser/${CLICOMMAND}
-COPY ./package.json /home/dockeruser/{CLICOMMAND}
-RUN npm install --save-dev
+COPY ./package.json /home/dockeruser/${CLICOMMAND}
+RUN npm install --production
 COPY . /home/dockeruser/${CLICOMMAND}
 RUN npm install -g
 

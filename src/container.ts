@@ -42,7 +42,7 @@ const runCmd = (cmd: string, args: string[]) => {
   })
 }
 
-export const buildImage = async (commandName: string) => {
+export const buildImage = async (commandName?: string) => {
   const dockerFile = join(
     process.cwd(),
     'node_modules',
@@ -51,16 +51,20 @@ export const buildImage = async (commandName: string) => {
     'Dockerfile'
   );
   const cmd = 'docker';
+  const userSpecifier = commandName || 'usercli';
   const args = [
     'build',
     '.',
     '-f',
     dockerFile,
-    '--build-arg',
-    `CLICOMMAND_ARG=${commandName}`,
     '--tag',
-    `${commandName}:latest`,
+    `${userSpecifier}:latest`,
   ];
+
+  if (commandName) {
+    args.push('--build-arg');
+    args.push(`CLICOMMAND_ARG=${commandName}`);
+  }
   await runCmd(cmd, args);
 };
 

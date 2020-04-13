@@ -79,7 +79,7 @@ runJestTest(testData);`;
     JSON.stringify(argv.dockerEnvVars || []);
 
   process.env.SHRUN_INTERNAL_SPECIFIER_IMAGE_NAME =
-    argv.dockerImage || 'node:13';
+    argv.dockerImage || 'usercli:latest';
   await runCLI(
     {
       ...argv,
@@ -103,14 +103,13 @@ const main = async () => {
   let cmdFinished = false;
   let blockNeeded = false;
   const argv = yargs.usage(usage).options(shrunOpts).command(
-    'build <commandName>',
+    'build [commandName]',
     'Build the default shrun docker image',
     (yargs0) => {
       yargs0
         .usage('Usage: $0 build <commandName>')
         .positional('commandName', {
           describe: 'Name of CLI command to bake into the docker image',
-          demandOption: true,
           type: 'string',
         })
         .strict()
