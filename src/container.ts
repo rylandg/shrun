@@ -4,7 +4,13 @@ import Docker from 'dockerode';
 import { v4 as uuidv4 } from 'uuid';
 import { PassThrough as PassThroughStream } from 'stream';
 
+import { BaseImage } from './cliInterface';
 import { msleep } from './msleep';
+
+const imageMap = {
+  [BaseImage.UBUNTU]: 'ubuntu.Dockerfile',
+  [BaseImage.ALPINE]: 'alpine.Dockerfile',
+};
 
 const docker = new Docker();
 
@@ -42,13 +48,13 @@ const runCmd = (cmd: string, args: string[]) => {
   })
 }
 
-export const buildImage = async (commandName?: string) => {
+export const buildImage = async (image: BaseImage, commandName?: string) => {
   const dockerFile = join(
     process.cwd(),
     'node_modules',
     'shrun',
     'docker_files',
-    'Dockerfile'
+    imageMap[image],
   );
   const cmd = 'docker';
   const userSpecifier = commandName || 'usercli';

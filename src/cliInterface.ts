@@ -124,3 +124,8 @@ export const getCLIOptions = () => {
   // delete shrunOpts.watchPathIgnorePaterns;
   return shrunOpts;
 };
+
+export enum BaseImage {
+  UBUNTU = 'ubuntu',
+  ALPINE = 'alpine',
+}

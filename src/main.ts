@@ -19,7 +19,11 @@ import { logger } from './logger';
 import { msleep } from './msleep';
 import { buildImage } from './container';
 import { Spec, TestSpec } from './specInterface';
-import { getCLIOptions, ShrunArgv } from './cliInterface';
+import {
+  BaseImage,
+  getCLIOptions,
+  ShrunArgv,
+} from './cliInterface';
 
 const glob = promisify(globCB);
 setGracefulCleanup();
@@ -106,7 +110,7 @@ const main = async () => {
   let cmdFinished = false;
   let blockNeeded = false;
   const argv = yargs.usage(usage).options(shrunOpts).command(
-    'build [commandName]',
+    'build [commandName] [options]',
     'Build the default shrun docker image',
     (yargs0) => {
       yargs0
@@ -115,12 +119,17 @@ const main = async () => {
           describe: 'Name of CLI command to bake into the docker image',
           type: 'string',
         })
+        .option('image', {
+          describe: 'Base OS to use when building your CLI specific image',
+          choices: ['ubuntu', 'alpine'],
+          default: 'ubuntu',
+        })
         .strict()
     },
-    async (argv: { commandName: string }) => {
+    async (argv: { commandName?: string, image: BaseImage }) => {
       blockNeeded = true;
       try {
-        await buildImage(argv.commandName);
+        await buildImage(argv.image, argv.commandName);
       } catch (err) {
         process.exit(1);
       }
