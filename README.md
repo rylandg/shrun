@@ -48,6 +48,8 @@ npx shrun build
 sudo -E npx shrun build
 ```
 
+> Note: build also takes an optional `--image` flag which accepts either "alpine" or "ubuntu" (default: ubuntu)
+
 **Create a simple spec**
 
 By default, `shrun` looks for "specs" (CLI tests) in the `<project-root>/specs` directory. Here is an example spec that tests the `echo` command in bash:
@@ -114,6 +116,7 @@ There are also two other stanzas not used in the above spec:
 ```bash
   --help                     Show help                                 [boolean]
   --version, -v              Print the version and exit                [boolean]
+  --volume, --vo             Mount a volume into your docker container   [array]
   --dockerImage              Docker image to use when running Shrun tests
                                                                         [string]
   --dockerEnvVars            Environment variables that should be passed into
