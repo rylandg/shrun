@@ -51,10 +51,17 @@ export const getCLIOptions = () => {
     type: 'array',
   };
 
+  const volumeOptions: Options = {
+    alias: 'vo',
+    type: 'array',
+    description: 'Mount a volume into your docker container',
+  };
+
   const shrunOpts = {
     ...options,
     dockerImage: dockerOption,
     dockerEnvVars: envOptions,
+    volume: volumeOptions,
   };
 
   // delete shrunOpts.$0;

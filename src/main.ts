@@ -78,6 +78,9 @@ runJestTest(testData);`;
   process.env.SHRUN_INTERNAL_SPECIFIER_ENV_VARS =
     JSON.stringify(argv.dockerEnvVars || []);
 
+  process.env.SHRUN_INTERNAL_SPECIFIER_VOLUMES =
+    JSON.stringify(argv.volume || []);
+
   process.env.SHRUN_INTERNAL_SPECIFIER_IMAGE_NAME =
     argv.dockerImage || 'usercli:latest';
   await runCLI(

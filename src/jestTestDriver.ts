@@ -16,7 +16,11 @@ import {
 } from './specInterface';
 import { getConfig } from './getConfig';
 
-const { imageName, envVars } = getConfig();
+const {
+  imageName,
+  envVars,
+  volumes,
+} = getConfig();
 
 const commonBashOpts = 'set -o pipefail;';
 
@@ -148,7 +152,7 @@ export const runJestTest = (testSpec: Spec) => {
       const activeEnvs = envVars
         .filter(envKey => process.env[envKey] !== undefined)
         .map(envKey => `${envKey}=${process.env[envKey]}`);
-      await container.startContainer(activeEnvs);
+      await container.startContainer(activeEnvs, volumes);
       if (rawSubTest.setup) {
         for (const setupStep of rawSubTest.setup) {
           // eslint-disable-next-line no-await-in-loop

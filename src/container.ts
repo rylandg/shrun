@@ -90,7 +90,7 @@ export class Container {
    * must be removed before exiting your application or it
    * will be left dangling.
    */
-  async startContainer(envVars?: string[]) {
+  async startContainer(envVars?: string[], volumes?: string[]) {
     this.container = await docker.createContainer({
       Image: this.imageName,
       Cmd: [startCommand],
@@ -98,6 +98,9 @@ export class Container {
       Tty: false, // allocating the TTY completes messes up docker headers
       OpenStdin: true,
       StdinOnce: false,
+      HostConfig: {
+        Binds: volumes,
+      },
     });
 
     // handle all stdout from the readside of the HTTPDuplex
