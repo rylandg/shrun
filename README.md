@@ -336,6 +336,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.cdevn.com"><img src="https://avatars0.githubusercontent.com/u/27736122?v=4" width="100px;" alt=""/><br /><sub><b>Ryland Goldstein</b></sub></a><br /><a href="#projectManagement-rylandg" title="Project Management">📆</a> <a href="https://github.com/rylandg/shrun/commits?author=rylandg" title="Tests">⚠️</a> <a href="https://github.com/rylandg/shrun/commits?author=rylandg" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jeanieholtz"><img src="https://avatars0.githubusercontent.com/u/40409248?v=4" width="100px;" alt=""/><br /><sub><b>jeanieholtz</b></sub></a><br /><a href="https://github.com/rylandg/shrun/commits?author=jeanieholtz" title="Code">💻</a></td>
     <td align="center"><a href="http://heathblandford.com"><img src="https://avatars0.githubusercontent.com/u/35548666?v=4" width="100px;" alt=""/><br /><sub><b>Heath Blandford</b></sub></a><br /><a href="https://github.com/rylandg/shrun/commits?author=heathblandford" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/pavelloz"><img src="https://avatars1.githubusercontent.com/u/546845?v=4" width="100px;" alt=""/><br /><sub><b>Paweł Kowalski</b></sub></a><br /><a href="https://github.com/rylandg/shrun/commits?author=pavelloz" title="Code">💻</a> <a href="https://github.com/rylandg/shrun/commits?author=pavelloz" title="Documentation">📖</a></td>
   </tr>
 </table>
 
